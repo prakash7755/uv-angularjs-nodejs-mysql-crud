@@ -78,10 +78,23 @@ function updateUserById(id, user) {
     return execQuery(query, values);
 }
 
+function deleteUserById(id) {
+     //  Throw Error If User ID is Empty
+    if (!id) {
+        const error = new TypeError('User ID Should Not Be Empty');
+        return Promise.reject(error);
+    }
+
+    const query = `DELETE FROM users WHERE id = "${id}"`;
+    return execQuery(query);
+
+}
+
 
 module.exports = {
 	getUsers,
 	getUserById,
     updateUserById,
-	createNewUser
+	createNewUser,
+    deleteUserById
 };

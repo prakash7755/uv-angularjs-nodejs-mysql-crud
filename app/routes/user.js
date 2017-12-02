@@ -114,7 +114,22 @@ router.route('/:id')
                 .catch(next);
         }
 
-    });
+    })
+
+
+    // Delete User From DB
+
+     .delete((req, res, next) => {
+        const { id } = req.params;
+
+        User.deleteUserById(id)
+            .then(data => {
+                const { results } = data;
+                successRespons(res, results)
+            })
+            .catch(next);
+
+    })
 
 
 
